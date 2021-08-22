@@ -45,6 +45,9 @@ class Birk:
             print(f"   - {self.src[i]}")
          return Fore.GREEN + f"   - {self.src[-1]}"
 
+   def set(self, path):
+      dump(self.src, path)
+      return Fore.GREEN + f"Current save destination is '{path}'."
 
 def load():
    # If there is no `paths.yml`, create an empty yaml file.
