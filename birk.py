@@ -17,6 +17,14 @@ class Birk:
         self.src, self.dst = load()
 
     def run(self, path=None):
+        """Create backup from source list to save destination.
+
+        Save destination directory needs to be created in advance.
+        If a path is set as argument, the save destination will be that path.
+
+        Args:
+            path (str): Optionally set save destinasion path
+        """
         if path is None:
             path = self.dst
 
@@ -36,6 +44,13 @@ class Birk:
                 tqdm.write(Fore.RED + f"'{i}' does not exist")
 
     def add(self, path):
+        """Add new path to source list.
+
+        Duplicate additions are not allowed.
+
+        Args:
+            path (str): Path to add to source list
+        """
         if path in self.src:
             return Fore.RED + "Path is duplicated and cannot be added."
         else:
@@ -47,10 +62,19 @@ class Birk:
             return Fore.GREEN + f"   - {self.src[-1]}"
 
     def set(self, path):
+        """Set save destination.
+
+        Args:
+            path (str): Path to set
+        """
         dump(self.src, path)
         return Fore.GREEN + f"Current save destination is '{path}'."
 
     def remove(self):
+        """Remove path from source list.
+
+        Select path to be removed from numbered source list using numbers.
+        """
         # Exit if there are no items in source list.
         if not self.src:
             return Fore.RED + "Exit because there are no items in source list."
@@ -70,6 +94,7 @@ class Birk:
             return Fore.RED + "Select in range of source list!"
 
     def list(self):
+        """Lists all source list items and save destination."""
         print("Source list:")
         for i in self.src:
             print(f"   - {i}")
@@ -77,6 +102,7 @@ class Birk:
         return f"   - {self.dst}"
 
     def destroy(self):
+        """Destroy all path items."""
         if input("Destroy path list? [y/N]: ").lower() in ["y", "ye", "yes"]:
             if os.path.isfile("paths.yml"):
                 os.remove("paths.yml")
