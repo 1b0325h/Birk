@@ -76,6 +76,13 @@ class Birk:
         print("\nSave destination:")
         return f"   - {self.dst}"
 
+    def destroy(self):
+        if input("Destroy path list? [y/N]: ").lower() in ["y", "ye", "yes"]:
+            if os.path.isfile("paths.yml"):
+                os.remove("paths.yml")
+                return "Destroyed"
+        return
+
 
 
 def load():
