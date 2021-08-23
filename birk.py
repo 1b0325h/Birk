@@ -69,6 +69,13 @@ class Birk:
         except IndexError:
             return Fore.RED + "Select in range of source list!"
 
+    def list(self):
+        print("Source list:")
+        for i in self.src:
+            print(f"   - {i}")
+        print("\nSave destination:")
+        return f"   - {self.dst}"
+
 
 
 def load():
