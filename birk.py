@@ -55,6 +55,20 @@ class Birk:
         if not self.src:
             return Fore.RED + "Exit because there are no items in source list."
 
+        print("Select number to be deleted from source list.")
+        for i in range(len(self.src)):
+            print(f"   {i}: {self.src[i]}")
+        try:
+            self.src.remove(x := self.src[int(input("\nEnter number: "))])
+            dump(self.src, self.dst)
+            return Fore.GREEN + f"'{x}' removed!"
+        except KeyboardInterrupt:
+            return
+        except ValueError:
+            return Fore.RED + "Please enter number!"
+        except IndexError:
+            return Fore.RED + "Select in range of source list!"
+
 
 
 def load():
